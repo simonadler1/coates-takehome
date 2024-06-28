@@ -3,7 +3,7 @@ import WeatherDisplay from "@/components/WeatherDisplay";
 import SearchByCity from "@/components/SearchByCity";
 import { fetchWeather } from "@/api/weatherService";
 import { useState } from "react";
-import { WeatherData } from "../../weather";
+import { WeatherData } from "@/types/weather";
 const App = () => {
   const [city, setCity] = useState("");
   const [weatherData, setWeatherData] = useState<WeatherData>();

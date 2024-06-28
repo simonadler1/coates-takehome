@@ -1,4 +1,4 @@
-import { Forecast, WeatherData } from "../../weather";
+import { Forecast, WeatherData } from "@/types/weather";
 const WeatherDisplay = ({ weatherData }: { weatherData: WeatherData }) => {
   function formatDate(datetimeString: string) {
     const dateObject = new Date(datetimeString);
