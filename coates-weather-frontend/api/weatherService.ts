@@ -1,5 +1,4 @@
 import axios from "axios";
-export const runtime = "edge";
 
 const API_ROOT = process.env.BACKEND_API_ROOT || "http://localhost:5000";
 
@@ -10,3 +9,4 @@ export const fetchWeather = async (city: string) => {
 
   return response.data;
 };
+export const runtime = "edge";
