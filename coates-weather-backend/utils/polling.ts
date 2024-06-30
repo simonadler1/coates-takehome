@@ -1,5 +1,4 @@
 import { fetchWeatherData } from "../services/weatherService";
-import cache from "./cache";
 
 let citiesToPoll: string[] = [];
 
@@ -10,16 +9,25 @@ const handleCitiesToPoll = (city: string) => {
 };
 
 const startPolling = () => {
+  console.log("setting up interval for polling weather data");
+
   const interval = setInterval(async () => {
     for (const city of citiesToPoll) {
       try {
+        console.log(`Polling weather data for ${city}`);
+
         const weatherData = await fetchWeatherData(city);
-        cache[city] = weatherData;
+        //check if weatherData is an error
+        if (weatherData instanceof Error) {
+          console.log("error");
+          console.log(weatherData);
+          continue;
+        }
       } catch (error) {
         console.error(`Error polling weather data for ${city}:`, error);
       }
     }
-  }, 10 * 60 * 1000); // Run every 10 minutes
+  }, 10 * 60 * 1000);
 
   // Clear cities every 12 hours
   setTimeout(() => {

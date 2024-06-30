@@ -22,7 +22,7 @@ const App = () => {
   const handlePolling = async () => {
     const Id = setInterval(() => {
       getWeatherData(city);
-    }, 60250);
+    }, 600250);
     setIntervalId(Id);
   };
 

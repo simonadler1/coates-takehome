@@ -9,10 +9,18 @@ export const fetchWeatherData = async (city: string) => {
   const currentWeatherUrl = `${BASE_URL}/weather?q=${city}&appid=${API_KEY}&units=metric`;
   const forecastUrl = `${BASE_URL}/forecast?q=${city}&appid=${API_KEY}&units=metric`;
 
-  //check if cached data is less than 10 minutes old. openweathermap api returns the dt in seconds rather than the standard milliseconds
-  if (cache[city] && Date.now() / 1000 - cache[city].currentWeather.dt < 600000) {
+  //check if cached data is less than 10 minutes old. openweathermap api returns the dt in seconds rather than the standard milliseconds. also it seems openweathemap can return data with old timestamps
+
+  if (cache[city] && Date.now() / 1000 - cache[city].currentWeather.dt < 600) {
+    console.log(
+      `Returning cached data for ${city} because age of data is ${
+        Date.now() / 1000 - cache[city].currentWeather.dt
+      } which is less than 600 seconds`
+    );
     return cache[city];
   }
+
+  console.log("returning fresh data");
 
   let currentWeatherResponse;
   let forecastResponse;
@@ -25,7 +33,7 @@ export const fetchWeatherData = async (city: string) => {
     console.log("Error fetching weather data" + error);
     console.log(error);
 
-    throw new Error(`Failed to fetch weather data for ${city}`);
+    return new Error(`Failed to fetch weather data for ${city}`);
   }
 
   const currentWeather = currentWeatherResponse.data;
