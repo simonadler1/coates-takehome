@@ -5,7 +5,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "node -r ts-node/register --watch --env-file=.env server.ts",
-    "production": "ts-node server.ts"
+    "production": "ts-node --transpile-only server.ts"
   },
   "author": "",
   "license": "ISC",
