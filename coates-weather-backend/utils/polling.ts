@@ -3,17 +3,15 @@ import cache from "./cache";
 
 let citiesToPoll: string[] = [];
 
-const pollWeatherData = (city: string) => {
-  citiesToPoll.push(city);
+const handleCitiesToPoll = (city: string) => {
+  if (!citiesToPoll.includes(city)) {
+    citiesToPoll.push(city);
+  }
 };
 
 const startPolling = () => {
   const interval = setInterval(async () => {
-    console.log("Polling weather data...");
-    const cities = [...citiesToPoll];
-    citiesToPoll = []; // Clear the cities
-
-    for (const city of cities) {
+    for (const city of citiesToPoll) {
       try {
         const weatherData = await fetchWeatherData(city);
         cache[city] = weatherData;
@@ -31,4 +29,4 @@ const startPolling = () => {
 };
 startPolling();
 
-export { pollWeatherData, citiesToPoll };
+export { handleCitiesToPoll, citiesToPoll };
