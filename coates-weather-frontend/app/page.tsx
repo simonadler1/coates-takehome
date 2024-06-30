@@ -1,7 +1,7 @@
 "use client";
 import WeatherDisplay from "@/components/WeatherDisplay";
 import SearchByCity from "@/components/SearchByCity";
-import { fetchWeather } from "@/api/weatherService";
+import { fetchWeather } from "@/app/api/weatherService";
 import { useState } from "react";
 import { WeatherData } from "@/types/weather";
 const App = () => {
