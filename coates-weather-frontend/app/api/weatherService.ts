@@ -2,8 +2,8 @@ const API_ROOT = process.env.NEXT_PUBLIC_BACKEND_API_ROOT || "http://localhost:5
 
 const API_URL = `${API_ROOT}/api/weather`;
 
-export const fetchWeather = async (city: string) => {
-  let response: any;
+export const fetchWeather = async (city: string): Promise<any> => {
+  let response: Response;
   response = await fetch(`${API_URL}/${city}`);
   if (!response.ok) {
     throw new Error("Failed to fetch weather data");

@@ -31,4 +31,4 @@ const startPolling = () => {
 };
 startPolling();
 
-export { pollWeatherData };
+export { pollWeatherData, citiesToPoll };
