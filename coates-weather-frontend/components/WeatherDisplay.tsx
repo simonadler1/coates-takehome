@@ -15,7 +15,7 @@ const WeatherDisplay = ({ weatherData }: { weatherData: WeatherData }) => {
   return (
     <div className="container">
       <div className="border">
-        <h2>Current Weather</h2>
+        <h2>Current Weather in {weatherData.currentWeather.name}</h2>
         <p>Temperature: {weatherData.currentWeather.main.temp}°C</p>
         <p>Condition: {weatherData.currentWeather.weather[0].description}</p>
       </div>

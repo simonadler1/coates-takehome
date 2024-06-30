@@ -11,6 +11,7 @@ const App = () => {
 
   const handleSearch = async () => {
     clearInterval(intervalId);
+    if (!city) return;
     getWeatherData(city);
     handlePolling();
   };
